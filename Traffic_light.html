@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Traffic light</title>
+
+  <script>
+    started = false;
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    } 
+
+    async function begin() {      
+      if(started)
+        return;
+
+      for(i = 0; i < 4; i++) {
+        await sleep(1000);
+        dye(i);
+      }
+
+      started = false;
+    }
+
+    grey = "#9d9d9d";
+    red = "#c1372d";
+    yellow = "#f7931e";
+    green = "#006837";
+
+    function reset() {
+      document.getElementById("red").style.fill = red;
+      document.getElementById("yellow").style.fill = grey;
+      document.getElementById("green").style.fill = grey;
+    }
+
+    function dye(status) {
+      switch(status) {
+        case 0:
+          document.getElementById("yellow").style.fill = yellow;
+          document.getElementById("red").style.fill = grey;
+          break;
+
+        case 1:
+          document.getElementById("yellow").style.fill = grey;
+          document.getElementById("green").style.fill = green;
+          break;
+        
+        case 2:
+          document.getElementById("yellow").style.fill = yellow;
+          document.getElementById("green").style.fill = grey;
+          break;
+
+        case 3:
+          document.getElementById("red").style.fill = red;
+          document.getElementById("yellow").style.fill = grey;
+          break;
+      }
+    }
+  </script>
+
+</head>
+<body>
+  <div id="divblock" style="position:relative; left:0px; top:2px;">
+    <button type="button" onclick="begin()">Begin</button>
+  </div>
+
+  <svg id="Ebene_1" width="1000px" height="800px" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 72 232.5">
+    <g id="background">
+      <path
+        d="M168,236.43V279h12.34a5.65,5.65,0,0,1,5.66,5.66v4.68a5.65,5.65,0,0,1-5.66,5.66H119.66a5.65,5.65,0,0,1-5.66-5.66v-4.68a5.65,5.65,0,0,1,5.66-5.66H132V236.43a25.26,25.26,0,0,1-18-24.2V87.77A25.27,25.27,0,0,1,139.27,62.5h21.46A25.27,25.27,0,0,1,186,87.77V212.23A25.26,25.26,0,0,1,168,236.43Z"
+        transform="translate(-114 -62.5)" />
+    </g>
+    <circle id="red" fill="#c1372d" cx="36" cy="32.5" r="24.15" />
+    <circle id="yellow" fill="#9d9d9d" cx="36" cy="87.5" r="24.15" />
+    <circle id="green" fill="#9d9d9d" cx="36" cy="142.5" r="24.15" />
+  </svg>
+</body>
+</html>
