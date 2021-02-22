@@ -13,7 +13,9 @@
     async function begin() {      
       if(started)
         return;
-
+      
+      started = true;
+      
       for(i = 0; i < 4; i++) {
         await sleep(1000);
         dye(i);
